@@ -16,27 +16,23 @@ func NewServer() *Server {
 	}
 }
 
-func(s *Server) HandleConn(conn net.Conn) {
-	defer conn.Close()
-	
-	buf := make([]byte, 4096)
-	for {
-		n, err := conn.Read(buf)
-		if err != nil {
-			return
-		}
-		cmd, args, err := protocol.Parse(buf[:n])
-		if err != nil {
-			return
-		}
-		cmd, args, err := protocol.Parse(buf[:n])
-		if err != nil {
-			conn.Write([]byte("Err" + err.Error()+ "\r\n"))
-			continue
-		}
-		response := s.handleCommand(cmd, args)
-		conn.Write(response)
-	}
+func (s *Server) HandleConn(conn net.Conn) {
+    defer conn.Close()
+
+    buf := make([]byte, 4096)
+    for {
+        n, err := conn.Read(buf)
+        if err != nil {
+            return
+        }
+        cmd, args, err := protocol.Parse(buf[:n])
+        if err != nil {
+            conn.Write([]byte("Err" + err.Error() + "\r\n"))
+            continue
+        }
+        response := s.handleCommand(cmd, args)
+        conn.Write(response)
+    }
 }
 
 func(s *Server) handleCommand(cmd string, args []string) []byte {

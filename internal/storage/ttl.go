@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+
 type TTLHeap []*Item
 
 func (h TTLHeap) Len() int           { return len(h) }
@@ -29,7 +30,7 @@ func (e *Engine) StartTTLChecker() {
 			time.Sleep(1 * time.Second)
 			e.mu.Lock()
 			for e.ttlHeap.Len() > 0 {
-				item := e.ttlHeap[0]
+				item := (*e.ttlHeap)[0]
 				if time.Now().Before(item.ExpireAt) {
 					break
 				}

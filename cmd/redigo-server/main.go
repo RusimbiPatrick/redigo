@@ -7,12 +7,12 @@ import (
 
 func main() {
 	//Todo get dynamic port
-	listen, err := net.Listen("tcp", ":6379")
+	listen, err := net.Listen("tcp", ":6389")
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 	srv := server.NewServer()
-	log.Println("server listening on :6379")
+	log.Println("server listening on :6389")
 	for {
 		conn, err := listen.Accept()
 		if err != nil {
