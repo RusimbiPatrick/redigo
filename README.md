@@ -38,16 +38,16 @@ telnet localhost 6389
 
 ---
 
-### 4. **Command Reference (docs/COMMANDS.md)**
+### 4. **Command Reference**
 
-```markdown
+
 # Command Reference
 
 ## Hash Commands
 
 ### HSET
 
-```redis
+```
 HSET key field1 value1 [field2 value2 ...]
 ```
 
