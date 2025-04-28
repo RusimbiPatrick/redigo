@@ -1,3 +1,4 @@
+
 # RediGo - Redis Clone in Go
 
 A Redis-compatible in-memory datastore implementation in Go, supporting core data structures and the RESP protocol.
@@ -8,19 +9,16 @@ A Redis-compatible in-memory datastore implementation in Go, supporting core dat
 - **Commands**: 15+ Redis-compatible commands
 - **Persistence**: TBD (Planned)
 - **Concurrency**: Thread-safe with RW locks
-- **Protocol**: RESP (Redis Serialization Protocol)
+- **Protocol**: RESP (Redis Serialisation Protocol)
 - **TTL**: Time-based expiration with heap
 
 ## Quick Start
 
-```bash
 # Build and run
 make && ./redigo
 
 # Connect with telnet
 telnet localhost 6389
-```
-
 ## Supported Commands
 
 | Command   | Example                      | Description                  |
@@ -36,16 +34,12 @@ telnet localhost 6389
 | TTL       | TTL key                      | Get time to live             |
 | PING      | PING                         | Server liveness check        |
 
----
 
-### 4. **Command Reference**
+## Command Reference
 
+### Hash Commands
 
-# Command Reference
-
-## Hash Commands
-
-### HSET
+#### HSET
 
 ```
 HSET key field1 value1 [field2 value2 ...]
@@ -54,12 +48,13 @@ HSET key field1 value1 [field2 value2 ...]
 Stores multiple hash fields.
 
 **Example:**
+
 ```bash
 127.0.0.1:6389> HSET user:1000 name "John" age 30
 (integer) 2
 ```
 
-### HGETALL
+#### HGETALL
 
 ```redis
 HGETALL key
@@ -68,6 +63,7 @@ HGETALL key
 Returns all fields and values in a hash.
 
 **Response:**
+
 ```redis
 1) "name"
 2) "John"
@@ -75,7 +71,7 @@ Returns all fields and values in a hash.
 4) "30"
 ```
 
-### HEXISTS
+#### HEXISTS
 
 ```redis
 HEXISTS key field
@@ -84,39 +80,39 @@ HEXISTS key field
 Returns if field exists in hash.
 
 **Return:**
+
 - `1` if exists
 - `0` if not exists
-```
 
 ---
 
-### 5. **Troubleshooting Guide (docs/TROUBLESHOOTING.md)**
+## Troubleshooting Guide
 
-```markdown
-# Common Issues
+### Common Issues
 
-## Connection Refused
+#### Connection Refused
 
 1. Check if the server is running:
+
 ```bash
 ps aux | grep redigo
 ```
 
 2. Verify listening port:
+
 ```bash
 lsof -i :6389
 ```
 
-## Command Not Found
+#### Command Not Found
 
 - Verify the command is implemented in:
   `internal/server/handler.go`
 - Check command spelling (Redis commands are uppercase)
-```
 
 ---
 
-### Redis CLI Telnet Update
+## Redis CLI Telnet Update
 
 To interact with your server using `telnet`, connect with:
 
