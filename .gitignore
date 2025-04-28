@@ -1,0 +1,22 @@
+# Ignore binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.o
+*.a
+*.bin
+
+# Ignore Go build output
+/redigo
+*.test
+
+# Ignore editor/IDE files
+.vscode/
+.idea/
+*.swp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
